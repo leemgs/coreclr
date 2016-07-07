@@ -736,34 +736,59 @@ inline  unsigned    genGetU4(const BYTE *addr)
 
 /*****************************************************************************/
 //  Helpers to pull little-endian values out of a byte stream.
-
+//  Get Unaligned values from a potentially unaligned object
 inline
 unsigned __int8     getU1LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED unsigned __int8 *)ptr; }
+{
+    unsigned __int8 temp;
+    memcpy(&temp, ptr, sizeof(temp));
+    return temp;
+}
 
 inline
 unsigned __int16    getU2LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED unsigned __int16 *)ptr; }
+{
+    unsigned __int16 temp;
+    memcpy(&temp, ptr, sizeof(temp));
+    return temp;
+}
 
 inline
 unsigned __int32    getU4LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED unsigned __int32*)ptr; }
-
+{
+    unsigned __int32 temp;
+    memcpy(&temp, ptr, sizeof(temp));
+    return temp;
+}
 inline
   signed __int8     getI1LittleEndian(const BYTE * ptr)
-{ return * (UNALIGNED signed __int8 *)ptr; }
-
+{
+    signed __int8 temp;
+    memcpy(&temp, ptr, sizeof(temp));
+    return temp;
+}
 inline
   signed __int16    getI2LittleEndian(const BYTE * ptr)
-{ return * (UNALIGNED signed __int16 *)ptr; }
-
+{
+    signed __int16 temp;
+    memcpy(&temp, ptr, sizeof(temp));
+    return temp;
+}
 inline
   signed __int32    getI4LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED signed __int32*)ptr; }
+{
+    signed __int32 temp;
+    memcpy(&temp, ptr, sizeof(temp));
+    return temp;
+}
 
 inline
   signed __int64    getI8LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED signed __int64*)ptr; }
+{
+    signed __int64 temp;
+    memcpy(&temp, ptr, sizeof(temp));
+    return temp;
+}
 
 inline
 float               getR4LittleEndian(const BYTE * ptr)
