@@ -21,6 +21,8 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 #include "compilerbitsettraits.hpp"
 
+#include <cstdlib>
+
 /*
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -759,11 +761,21 @@ inline
 
 inline
   signed __int32    getI4LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED signed __int32*)ptr; }
+{   
+    signed __int32 *buffer = new signed __int32;
+    if (buffer)
+        memcpy(buffer, ptr, 4); // 4 bytes
+    return *buffer;
+}
 
 inline
   signed __int64    getI8LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED signed __int64*)ptr; }
+{
+    signed __int64 *buffer = new signed __int64;
+    if (buffer)
+        memcpy(buffer, ptr, 8); // 8 bytes
+    return *buffer;
+}
 
 inline
 float               getR4LittleEndian(const BYTE * ptr)
