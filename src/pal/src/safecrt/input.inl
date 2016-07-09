@@ -39,7 +39,9 @@
 #define TRUE 1
 #endif
 
+#if !defined(_M_ARM)
 #define UNALIGNED
+#endif
 
 #define _BEGIN_SECURE_CRT_DEPRECATION_DISABLE
 #define _END_SECURE_CRT_DEPRECATION_DISABLE

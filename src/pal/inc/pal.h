@@ -201,7 +201,11 @@ extern "C" {
 
 #else // _MSC_VER
 
+#if defined(_M_ARM)
+#define UNALIGNED __unaligned
+#else
 #define UNALIGNED
+#endif
 
 #endif // _MSC_VER
 
