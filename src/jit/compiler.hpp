@@ -757,13 +757,16 @@ inline
   signed __int16    getI2LittleEndian(const BYTE * ptr)
 { return * (UNALIGNED signed __int16 *)ptr; }
 
+typedef signed __int32 __attribute__((aligned(1))) __unaligned_arm_int32;
+typedef signed __int64 __attribute__((aligned(1))) __unaligned_arm_int64;
+
 inline
   signed __int32    getI4LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED signed __int32*)ptr; }
+{ return *(__unaligned_arm_int32 *)ptr; }
 
 inline
   signed __int64    getI8LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED signed __int64*)ptr; }
+{ return *(__unaligned_arm_int64 *)ptr; }
 
 inline
 float               getR4LittleEndian(const BYTE * ptr)
