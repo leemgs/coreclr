@@ -39,7 +39,11 @@
 #define TRUE 1
 #endif
 
+#if !defined (_M_ARM)
 #define UNALIGNED
+#elif defined (_M_ARM) && defined(DEBUG)
+#define UNALIGNED
+#endif
 
 #define _BEGIN_SECURE_CRT_DEPRECATION_DISABLE
 #define _END_SECURE_CRT_DEPRECATION_DISABLE
@@ -516,9 +520,10 @@ DEFAULT_LABEL:
                     original_array_width = array_width = va_arg(arglist, size_t);
 #endif  /* _WIN64 */
 
+	 	    typedef wchar_t UNALIGNED __unaligned_wchar_t;
                     if(array_width < 1) {
                         if (widechar > 0)
-                            *(wchar_t UNALIGNED *)pointer = L'\0';
+                            *(__unaligned_wchar_t *)pointer = L'\0';
                         else
                             *(char *)pointer = '\0';
 

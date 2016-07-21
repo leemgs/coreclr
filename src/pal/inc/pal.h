@@ -202,12 +202,10 @@ extern "C" {
 #else // _MSC_VER
 
 #if defined (_M_ARM) && !defined (DEBUG)
-#define UNALIGNED
-#define UNALIGNED_ARM     __attribute__((aligned(1))) //for -O2 and -O3
-#else
-#define UNALIGNED
-#define UNALIGNED_ARM  //for -O0
-#endif
+#define UNALIGNED __attribute__((aligned(1))) //for -O2 and -O3
+#else  // defined (_M_ARM) && !defined (DEBUG)
+#define UNALIGNED //for -O0
+#endif // defined (_M_ARM) && !defined (DEBUG)
 
 #endif // _MSC_VER
 

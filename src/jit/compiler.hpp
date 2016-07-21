@@ -736,29 +736,35 @@ inline  unsigned    genGetU4(const BYTE *addr)
 
 /*****************************************************************************/
 //  Helpers to pull little-endian values out of a byte stream.
+//  Get Unaligned values from a potentially unaligned object
+
+typedef unsigned __int8  UNALIGNED __unaligned_uint8;
+typedef unsigned __int16 UNALIGNED __unaligned_uint16;
+typedef unsigned __int32 UNALIGNED __unaligned_uint32;
+typedef signed __int8  UNALIGNED __unaligned_int8;
+typedef signed __int16 UNALIGNED __unaligned_int16;
+typedef signed __int32 UNALIGNED __unaligned_int32;
+typedef signed __int64 UNALIGNED __unaligned_int64;
 
 inline
 unsigned __int8     getU1LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED unsigned __int8 *)ptr; }
+{ return *(__unaligned_uint8 *)ptr; }
 
 inline
 unsigned __int16    getU2LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED unsigned __int16 *)ptr; }
+{ return *(__unaligned_uint16 *)ptr; }
 
 inline
 unsigned __int32    getU4LittleEndian(const BYTE * ptr)
-{ return *(UNALIGNED unsigned __int32*)ptr; }
+{ return *(__unaligned_uint32 *)ptr; }
 
 inline
   signed __int8     getI1LittleEndian(const BYTE * ptr)
-{ return * (UNALIGNED signed __int8 *)ptr; }
+{ return *(__unaligned_int8 *)ptr; }
 
 inline
   signed __int16    getI2LittleEndian(const BYTE * ptr)
-{ return * (UNALIGNED signed __int16 *)ptr; }
-
-typedef signed __int32 UNALIGNED_ARM __unaligned_int32;
-typedef signed __int64 UNALIGNED_ARM __unaligned_int64;
+{ return *(__unaligned_int16 *)ptr; }
 
 inline
   signed __int32    getI4LittleEndian(const BYTE * ptr)
